@@ -8,7 +8,7 @@ indexName = "all-documents"
 try:
     es = Elasticsearch('http://localhost:9200/')
 except ConnectionError as e:
-    print("Connection Error: ",e)
+    print("Connection Error: ", e)
 
 if es.ping():
         print('Yupiee  Connected ')
@@ -29,7 +29,7 @@ def search(prompt):
 
     res = es.knn_search(index="all_documents",
                         knn=query,
-                        source=["medical_abstract"])
+                        source=["Title","Field", "Image"])
 
     result = res["hits"]["hits"]
 
@@ -41,16 +41,18 @@ def main():
 
     prompt = st.chat_input("Search something...")
     if prompt:
-        st.write(f"You searched about the following prompt: {prompt}")
+        st.write(f"You searched about: {prompt}")
 
         results = search(prompt)
 
-        st.subheader("Search Results")
+        st.subheader("Search Results: ")
         for result in results:
             with st.container():
                 if "_source" in result:
                     try:
-                        st.header(f"Document: {result['_source']['medical_abstract']}")
+                        st.subheader(f"Score: {result['_score']}")
+                        st.header(f"Title: {result['_source']['Title']}")
+                        st.write(f"{result['_source']['Field']}")
                     except Exception as e:
                         print(e)
 
