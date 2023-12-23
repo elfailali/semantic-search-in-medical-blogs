@@ -23,13 +23,13 @@ def search(prompt):
     query = {
         "field": "description_vector",
         "query_vector": vector_input,
-        "k": 5, # make the user choose !
+        "k": 5, # next work: make the user choose !
         "num_candidates": 100,
     }
 
     res = es.knn_search(index="all_documents",
                         knn=query,
-                        source=["Title","Field", "Image"])
+                        source=["_id","Title","Field", "Image"])
 
     result = res["hits"]["hits"]
 
