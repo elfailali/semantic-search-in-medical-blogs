@@ -1,5 +1,5 @@
 data/*
 
-!"data/HarvardHealthBlog/Harvard Health Blog - Live a Healthier Lifestyle - Harvard Health page 1.json"
+!data/HarvardHealthBlog/*.json
 
 *.docx

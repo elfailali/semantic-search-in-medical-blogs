@@ -29,7 +29,7 @@ def search(prompt):
 
     res = es.knn_search(index="all_documents",
                         knn=query,
-                        source=["_id","Title","Field", "Image"])
+                        source=["_id", "Title", "Field", "Image"])
 
     result = res["hits"]["hits"]
 
