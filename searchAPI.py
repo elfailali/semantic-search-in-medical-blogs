@@ -55,7 +55,7 @@ def search_api():
         response = [{
             "Id": result["_id"],
             "Title": result['_source']['title'],
-            "Field": result['_source']['content'],
+            "Content": result['_source']['content'],
             "ImageURL": result['_source']['imageURL'],
             "PublishedDate": result['_source']['publishedDate'],
             "articleURL": result['_source']['articleURL'],

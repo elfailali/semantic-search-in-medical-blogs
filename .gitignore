@@ -1,7 +1,6 @@
-data/*
+/data/*
 
 *.docx
 
-!data/HarvardHealthBlog/HarvardHealthBlog_part2.json
-
+!/data/HarvardHealthBlog
 
