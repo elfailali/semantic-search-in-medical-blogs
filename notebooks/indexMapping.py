@@ -15,7 +15,7 @@ indexMapping = {
         "condition_label" : {
             "type" : "long"
         },
-        "medical_abstract" : {
+        "content" : {
             "type" : "text"
         },
         "description_vector" : {
