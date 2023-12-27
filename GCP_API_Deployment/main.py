@@ -1,9 +1,10 @@
 from flask import Flask, request, jsonify, abort
-import streamlit as st
 from elasticsearch import Elasticsearch
 from sentence_transformers import SentenceTransformer
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 ELASTIC_PASSWORD = "ysP1ylGF4F9UCzbD3RXLzCVW"
 CLOUD_ID="8fc609e4e1a947fab7f3ab52e7e1c3d7:dXMtY2VudHJhbDEuZ2NwLmNsb3VkLmVzLmlvJGFmZDgyZGYyNzFlNjRiYjRhNTcwNjg2Yzk4ZWFmOTI0JDljYmQ0NDhhMWM3MjRjNjE5YTk4NTAyOWE3NmFkM2E0"
@@ -56,7 +57,7 @@ def search_api():
     prompt = data.get('prompt', '')
     print("prompt = ", prompt)
 
-    if prompt:
+    if 0:
         results = search(prompt)
         response = [{
             "Id": result["_id"],
@@ -73,4 +74,4 @@ def search_api():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=8080)
+    app.run(debug=True)
