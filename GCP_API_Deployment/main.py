@@ -5,7 +5,6 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
-
 ELASTIC_PASSWORD = "ysP1ylGF4F9UCzbD3RXLzCVW"
 CLOUD_ID="8fc609e4e1a947fab7f3ab52e7e1c3d7:dXMtY2VudHJhbDEuZ2NwLmNsb3VkLmVzLmlvJGFmZDgyZGYyNzFlNjRiYjRhNTcwNjg2Yzk4ZWFmOTI0JDljYmQ0NDhhMWM3MjRjNjE5YTk4NTAyOWE3NmFkM2E0"
 indexName = "medical_documents"
@@ -57,7 +56,7 @@ def search_api():
     prompt = data.get('prompt', '')
     print("prompt = ", prompt)
 
-    if 0:
+    if prompt:
         results = search(prompt)
         response = [{
             "Id": result["_id"],

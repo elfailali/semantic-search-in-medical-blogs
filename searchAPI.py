@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 ELASTIC_PASSWORD = "ysP1ylGF4F9UCzbD3RXLzCVW"
 CLOUD_ID="8fc609e4e1a947fab7f3ab52e7e1c3d7:dXMtY2VudHJhbDEuZ2NwLmNsb3VkLmVzLmlvJGFmZDgyZGYyNzFlNjRiYjRhNTcwNjg2Yzk4ZWFmOTI0JDljYmQ0NDhhMWM3MjRjNjE5YTk4NTAyOWE3NmFkM2E0"
-indexName = "medical_documents"
+indexName = "med-blogs"
 model = SentenceTransformer("all-mpnet-base-v2")
 
 # ---- CHECK THE CONNECTION TO ELASTICSEARCH CLOUD
@@ -59,13 +59,15 @@ def search_api():
     if prompt:
         results = search(prompt)
         response = [{
-            "Id": result["_id"],
-            "Title": result['_source']['title'],
-            "Content": result['_source']['content'],
-            "ImageURL": result['_source']['imageURL'],
-            "PublishedDate": result['_source']['publishedDate'],
-            "articleURL": result['_source']['articleURL'],
-            "Score": result['_score']
+            "idELK": result["_id"],
+            "postID": result['_source']['postID'],
+            "title": result['_source']['title'],
+            "content": result['_source']['content'],
+            "tags": result['_source']['tags'],
+            "image": result['_source']['image'],
+            "createdAt": result['_source']['createdAt'],
+            "likes": result['_source']['likes'],
+            "score": result['_score']
         } for result in results]
         return jsonify(response)
     else:
