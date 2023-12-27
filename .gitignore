@@ -1,0 +1,7 @@
+/data/*
+
+*.docx
+
+!/data/HarvardHealthBlog
+
+venv/**
