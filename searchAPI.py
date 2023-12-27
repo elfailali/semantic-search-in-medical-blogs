@@ -38,7 +38,7 @@ def search(prompt):
 
     res = es.knn_search(index=indexName,
                         knn=query,
-                        source=['title', 'imageURL', 'articleURL', 'category', 'publishedDate', 'content'])
+                        source=['postId', 'title', 'image', 'content', 'createdAt', 'tags', 'likes'])
 
     result = res["hits"]["hits"]
 
@@ -60,7 +60,7 @@ def search_api():
         results = search(prompt)
         response = [{
             "idELK": result["_id"],
-            "postID": result['_source']['postID'],
+            "postId": result['_source']['postId'],
             "title": result['_source']['title'],
             "content": result['_source']['content'],
             "tags": result['_source']['tags'],
